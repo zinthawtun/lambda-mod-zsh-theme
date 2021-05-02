@@ -1,7 +1,7 @@
+#modified from original for my theme 
 #!/usr/bin/env zsh
 
-local LAMBDA="%(?,%{$fg_bold[green]%}λ,%{$fg_bold[red]%}λ)"
-if [[ "$USER" == "root" ]]; then USERCOLOR="red"; else USERCOLOR="yellow"; fi
+local LAMBDA="%(?,%{$fg_bold[white]%}λ,%{$fg_bold[red]%}λ)"
 
 # Git sometimes goes into a detached head state. git_prompt_info doesn't
 # return anything in this case. So wrap it in another function and check
@@ -29,8 +29,7 @@ function get_right_prompt() {
 }
 
 PROMPT=$'\n'$LAMBDA'\
- %{$fg_bold[$USERCOLOR]%}%n\
- %{$fg_no_bold[magenta]%}[%'${LAMBDA_MOD_N_DIR_LEVELS:-3}'~]\
+ %{$fg_no_bold[cyan]%}[%'${LAMBDA_MOD_N_DIR_LEVELS:-3}'~]\
  $(check_git_prompt_info)\
 %{$reset_color%}'
 
@@ -49,6 +48,15 @@ ZSH_THEME_GIT_PROMPT_DELETED="%{$fg_bold[red]%}-"
 ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg_bold[magenta]%}>"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg_bold[yellow]%}#"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[cyan]%}?"
+
+# Format for git_prompt_ahead()
+ZSH_THEME_GIT_PROMPT_AHEAD=" %{$fg_bold[white]%}^"
+
+
+# Format for git_prompt_long_sha() and git_prompt_short_sha()
+ZSH_THEME_GIT_PROMPT_SHA_BEFORE=" %{$fg_bold[white]%}[%{$fg_bold[blue]%}"
+ZSH_THEME_GIT_PROMPT_SHA_AFTER="%{$fg_bold[white]%}]"
+
 
 # Format for git_prompt_ahead()
 ZSH_THEME_GIT_PROMPT_AHEAD=" %{$fg_bold[white]%}^"
